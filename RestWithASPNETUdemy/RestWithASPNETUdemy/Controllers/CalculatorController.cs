@@ -10,17 +10,71 @@ namespace RestWithASPNETUdemy.Controllers
     [ApiController]
     public class CalculatorController : ControllerBase
     {
-        // GET api/values/5
-        [HttpGet("{firstNumber}/{secondNumber}")]
+        // GET api/calculator/sum/5/5
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
-                return Ok(sum.ToString());
+                var ret = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
+                return Ok(ret.ToString());
             }
             return BadRequest("Invalid input");
         }
+
+        // GET api/calculator/subtraction/5/5
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var ret = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(ret.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        // GET api/calculator/multiplication/5/5
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var ret = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(ret.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
+        // GET api/calculator/division/5/5
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                if (ConvertToDecimal(secondNumber) != 0)
+                {
+                    var ret = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                    return Ok(ret.ToString());
+                }
+            }
+            return BadRequest("Invalid input");
+        }
+
+        // GET api/calculator/average/5/5
+        [HttpGet("average/{firstNumber}/{secondNumber}")]
+        public IActionResult Average(string firstNumber, string secondNumber)
+        {
+
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                    var ret = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber) / 2;
+                    return Ok(ret.ToString());
+            }
+            return BadRequest("Invalid input");
+        }
+
 
         private decimal ConvertToDecimal(string number)
         {
