@@ -4,12 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace RestWithASPNETUdemy.Controllers
+namespace CalculatorREST.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CalculatorController : ControllerBase
     {
+
+        // GET api/calculator
+        [HttpGet]
+        public ActionResult<string> Get()
+        {
+            return "Welcome To Calculator. Select your operation!";
+        }
+
+
         // GET api/calculator/sum/5/5
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
